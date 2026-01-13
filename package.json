@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://Alex02Mx.github.io/notebook-app",
+  "homepage": "https://Alex02Mx.github.io/notebook",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
