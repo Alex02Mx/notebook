@@ -1,7 +1,7 @@
 import logo from "../assets/logo.png"
 import addPage from '../assets/add-page.png'
 import editPage from '../assets/edit-page.png'
-import deletePage from '../assets/delete-page.png'
+import deletePage from '../assets/delete-page2.png'
 
 import homePage from '../assets/home.png'
 import addTask from '../assets/add-task.png'
@@ -19,18 +19,15 @@ export function Header({setShowPageBtns,
                         showTaskBtns,
                         setConfirmDelete 
                       }){
-   return (
-    <>
-    <div className="header">
-
-      <div className="header__logo">
-          <img src = {logo} alt="Logo"></img>
-      </div>
-
-      <div className="header__actions">
-
-        <div>
-          {showTaskBtns && (
+  return (
+  <>
+  <div className="header">
+    <div className="header__logo">
+        <img src = {logo} alt="Logo"></img>
+    </div>
+    <div className="header__actions">
+      <div>
+        {showTaskBtns && (
           <>
           <button className="header-btn header-btn--square" 
                   onClick = { () => {
@@ -47,7 +44,6 @@ export function Header({setShowPageBtns,
                 alt="Home"
               />
           </button>
-
           <button className="header-btn header-btn--square" 
                   onClick = { () => {
                       setShowNewFormTask(true)
@@ -59,17 +55,12 @@ export function Header({setShowPageBtns,
                 alt="Agregar Tarea"
               />
           </button>
-
- 
           </>
-          )}
-
-        </div>
-
-        <div>
-          {showPageBtns && (
+        )}
+      </div>
+      <div>
+        {showPageBtns && (
           <>
-
           <button className="header-btn header-btn--square" 
                   onClick={ () => { 
                       setShowEditForm(false)
@@ -83,7 +74,6 @@ export function Header({setShowPageBtns,
                 alt="Agregar Pagina"
               />
           </button>
-
           <button className="header-btn header-btn--square" 
                   disabled={selectedPageId === null}
                   onClick = { () => {
@@ -96,8 +86,7 @@ export function Header({setShowPageBtns,
                 alt="Editar Pagina"
               />
           </button>
-
-          <button className="header-btn header-btn--square" 
+          <button className="task-delete header-btn--square" 
                   disabled={selectedPageId === null}
                   onClick = { () => {
                     setConfirmDelete({
@@ -112,16 +101,13 @@ export function Header({setShowPageBtns,
                 alt="Borrar Pagina"
               />
           </button>
-
           </>
-          )}
-        </div>
-
+        )}
       </div>
-
-    </div>  
-    </>
-   )
+    </div>
+  </div>  
+  </>
+  )
 }
 
 

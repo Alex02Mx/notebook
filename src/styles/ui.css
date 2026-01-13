@@ -1,3 +1,76 @@
+/* ------- header box and buttons -------- */
+
+.header{
+  position: fixed;
+  top: 0rem;
+  left: 0;
+  right: 0;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content:space-between;
+  gap: 0.5rem;
+  background-color:var(--color-header-bg);
+  padding: 0.3rem 0.5rem;
+  box-shadow: 0px 1px 0 var(--header-shadow);
+  z-index: 1000;
+}
+
+.header__logo img{
+   width: 145px; 
+}
+
+.header__actions{
+ display: flex;
+ align-items: center;
+ padding: 0.3rem;
+ background: transparent;
+}
+
+.header-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: none;
+  border-radius: 8px;
+  padding: 6px;
+  cursor: pointer;
+  transition: background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.header-btn:hover {
+  background-color: rgba(255, 255, 255, 0.06);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.header-btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 0 1px var(--btn-shadow);
+}
+
+.header-btn:disabled{
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.header-btn:focus-visible{
+  outline: none;
+  background-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 0 2px #3b82f6;
+}
+
+/* Modificadores */
+.header-btn--square{
+  width: 2.75rem;   
+  height: 2.75rem;
+} 
+
+.header-btn__icon{
+  width: 2rem;
+  height: 2rem;
+}
 /* --- taskList --- */
 .ui-overlay {
   position: fixed;
@@ -134,7 +207,7 @@
   border-radius: 14px;
   border: none;
   background: var(--form-base-bg);
-  box-shadow: 0 10px 30px var(--form-shadow);
+  box-shadow: var(--form-shadow);
 }
 
 .ui-base--list {
@@ -359,27 +432,41 @@
 }
 
 .task-delete {
-  filter: none;
-  opacity: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: none;
+  border-radius: 8px;
+  padding: 6px;
+  cursor: pointer;
+  transition: background-color 0.15s ease, box-shadow 0.15s ease;
 }
-
 .task-delete:hover {
-  background: var(--list-x-btn-bg-hover);
-  box-shadow: var(--list-x-btn-shd-hover);
+  background: var(--x-btn-bg-soft);
+  border-color: var(--x-btn-bg-hard);
 }
 .task-delete:disabled {
   filter: grayscale(70%);
   opacity: 0.4;
+  cursor: not-allowed;
+}
+.task-delete:active {
+  background: var(--x-btn-bg-soft);
+  transform: scale(0.97);
+/*
+  transform: translateY(1px);
+  box-shadow: 0 0 1px var(--btn-shadow);
+  */
 }
 
 .ui-modal-danger {
   background: var(--modal-danger-bg);
   border-radius: 14px;
-  box-shadow: 0 18px 40px var(--modal-shadow);
+  box-shadow: var(--modal-shadow);
   border: none;
   text-align: center;
 }
-
 .ui-modal__warning{
   color:  var(--modal-warning-text);
   font-weight: 500;

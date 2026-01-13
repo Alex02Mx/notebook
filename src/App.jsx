@@ -9,9 +9,6 @@ import { useEffect, useState } from 'react'
 
 import './styles/variables.css'
 import './styles/ui.css'
-import './styles/header.css'
-import './styles/pageList.css'
-import './styles/taskList.css'
 
 export default function App() {
   

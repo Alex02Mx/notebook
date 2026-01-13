@@ -72,7 +72,7 @@ export function TaskList({showPage,
                     />
               </button>
 
-              <button className="header-btn header-btn--square task-delete" 
+              <button className="header-btng header-btn--square task-delete" 
                         disabled={!task.status}
                         onClick = { () => {
                           setConfirmDelete({
