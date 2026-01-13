@@ -4,7 +4,7 @@ import react from '@vitejs/plugin-react-swc'
 // https://vite.dev/config/
 
 export default defineConfig({
-  base: "/notebook-app/",
+  base: "/notebook/",
   plugins: [react()],
   server: {
     watch: {
