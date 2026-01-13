@@ -4,118 +4,90 @@
 }
 
 :root{
-  /*=================== Tokens de diseno ==================*/
-  /* Header */    
+  /* =================== Header =================== */    
     --header-height: 3.5rem;
-    --color-header-bg: #161b22;
-    --header-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    --color-header-bg: #232830;
+    --header-shadow: 0 3px 8px rgba(0, 0, 0, 0.45);
    
-  /* Body */
-    --color-body-bg: #0d1117;
-    --color-body-text: #e5e7eb;  
+  /* =================== Body =================== */
+    --color-body-bg: #1e2229;
+    --color-body-text: #e0e4e8;  
   
-  /* Base */
+  /* =================== Base =================== */
     --color-bg-base-form: #2f343d;
-    --color-bg-base: #2f343d;
-    --color-text-base:  #e5e7eb;
+    --color-bg-base-list: #252a31;
+    --color-text-base:  #e0e4e8;
     --color-text-soft: #eaeaea;
 
-  /* Brand / Accent */
-    --color-accent-300: #1f1f1f;
-    --color-accent-400: #3a3a3a;
-    --color-accent-500: #1da1f2;
+    /* =================== Buttons =================== */
+    /* primary */
+    --primary: #2f80ed;
+    --primary-hover: #1a73e8;
+    --primary-active: #165bb0;
+    --primary-focus: #8ab4ff;
+    --primary-text: #ffffff;
+    /* Secondary */
+    --secondary: #a8b3c5;
+    --secondary-hover: #ffffff;
+    --secondary-active-bg: rgba(255,255,255,0.05);
+    --secondary-focus-shadow: 0 0 0 2px #666;
+    --secondary-border: #3a3a3a;
+    /* list delete btns */
+    --list-x-btn-bg-hover:rgba(214, 69, 69, 0.85);
+    --list-x-btn-shd-hover: 0 2px 6px rgba(214, 69, 69, 0.45);
+    /* modal delete btn */
+    --color-danger-btn: #d64545;
+    --color-danger-btn-hover: #b93737;
+  
+  /* =================== Inputs / Radios / border =================== */
+  /* input text window */ 
+    --input-bg: #1f1f1f;
+    --input-border-normal: #3a3a3a;
+    --input-focus: #1da1f2;
+  /* checkboxes */
+    --bg-base: #2f343d;
+    --bg-hover: #3a404a;
+    --border-default: #6b7280;
+    --border-hover: #9ca3af;
+    --accent:  #1e90ff;          
+    --accent-soft: #38bdf8;
+    --text-main: #e5e7eb;
+    --text-muted: #9ca3af;
 
-    --color-accent-700: hsl(200, 100%, 70%);
-    --color-accent-800: hsl(200, 100%, 80%);
-    --color-accent-900: hsl(200, 100%, 90%);
-
-  /* Neutrals */
-    --color-muted: #868686;
-    --color-overlay: rgba(0, 0, 0, 0.65);
-
-  /* Shadow */
-    --form-shadow: rgba(0,0,0,0.6);
-    --shadow: rgba(0,0,0,0.4);
-
-  /* Priority */
+    /* =================== Modals ===================*/
+    --modal-warning-text: #ff5c5c;
+    /* --modal-danger-bg: #2b2b2b;  */
+    --modal-danger-bg: #2f343d;
+    --modal-shadow: 0 15px 35px rgba(0,0,0,0.55),
+              0 4px 12px rgba(0,0,0,0.35);
+  
+    /* =================== Priority text=================== */
     --color-normal: #aaa;
     --color-danger: #d14c4c; 
 
-  /* Modals */
-    --modal-warning-text: #ff5c5c;
-    --modal-danger-bg: #2b2b2b; 
-    --modal-shadow: rgba(0,0,0,.55);
+    /* =================== List / Forms =================== */
+    /* List */
+    --list-base-bg: #252a31;
+    /* Form */
+    --form-base-bg: #252a31;
+    --form-shadow: rgba(0,0,0,0.6); 
 
-  /* Buttons and Icons shadows*/
-    --color-bg-hover: rgba(255, 255, 255, 0.1);
-    --color-hd-shadow: rgba(0, 0, 0, 0.993);
-
+  /* =================== States =================== */
+    --muted: #868686;;
+    --overlay: rgba(0, 0, 0, 0.65);
 
   /*=================== Variables Semanticas ==================*/
   /* Text */
     --header-text: var(--color-text-base);
     --title-text: var(--color-text-soft);
     --body-text: var(--color-text-soft);
-  
-  /* Inputs / Radios / border */
-    --input-bg: var(--color-accent-300);
-    --input-border-normal: var(--color-accent-400);
-    --input-focus: var(--color-accent-500);
-
-    --bg-base: #2f343d;
-    --bg-hover: #3a404a;
-
-    --border-default: #6b7280;
-    --border-hover: #9ca3af;
-
-    --accent: #0ea5e9;          /* azul acción */
-    --accent-soft: #38bdf8;
-
-    --text-main: #e5e7eb;
-    --text-muted: #9ca3af;
-    --textd-muted: #01ff415d;
-
-
-    --rd-normal: var(--color-accent-900);
-    --rd-hover: var(--color-accent-800);
-
-    --rd-checked: var(--color-accent-400);
-    --rd-checked-text: var(--color-text-soft);
-    --rd-checked-hover: var(--color-accent-300);
-
-    --win-border: var(--color-accent-500);
-
-  /* Buttons */
-    --primary: #2f80ed;
-    --primary-hover: #1c6fd5;
-    --primary-active: #165bb0;
-    --primary-focus: #8ab4ff;
-    --primary-text: #ffffff;
-
-    --secondary: #a8b3c5;
-    --secondary-hover: #ffffff;
-    --secondary-active-bg: rgba(255,255,255,0.05);
-    --secondary-focus-shadow: 0 0 0 2px #666;
-    --secondary-border: #3a3a3a;
-
-    --color-danger-btn: #d64545;
-    --color-danger-btn-hover: #b93737;
-
-  /* States */
-    --muted: var(--color-muted);
-    --overlay: var(--color-overlay);
-
-  /* Priority */
-    --priority-normal: var(--color-normal);
-    --priority-urgent: var(--color-danger);
-  
-  /* Shadows */
-    --btn-shadow: var(--shadow);
 }
+/* ======================================== */
 
 header{
   height: var(--header-height);
 }
+
 body{
   background: var(--color-body-bg);
   color: var(--color-body-text);
