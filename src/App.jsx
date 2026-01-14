@@ -12,27 +12,26 @@ import './styles/ui.css'
 
 export default function App() {
   
-  const [pagesNoteBook, setPagesNoteBook] = useState(()=>{
-    const localPages = localStorage.getItem("PAGES")
-    if(localPages === null) return []
-    return  JSON.parse(localPages)
-  })
-  
+  const [pagesNoteBook, setPagesNoteBook] = useState(() => getLocalStorage("PAGES", []) )
   useEffect(() => {
     localStorage.setItem("PAGES", JSON.stringify(pagesNoteBook))
   },[pagesNoteBook])
   
 
-
-  const [taskList, setTaskList] = useState(() => {
-    const localTasks = localStorage.getItem("TASKS")
-    if(localTasks === null) return []
-    return JSON.parse(localTasks)
-  })
-
+  const [taskList, setTaskList] = useState(() => getLocalStorage("TASKS", [] ) )
   useEffect( () => {
     localStorage.setItem("TASKS", JSON.stringify(taskList))
   },[taskList])
+
+  function getLocalStorage(key, defaulValue ){
+    try{
+      const item = localStorage.getItem(key)
+      return  item ? JSON.parse(item) : defaulValue
+    }
+    catch{
+      return defaulValue
+    }
+  }
 
   const [showNewForm, setShowNewForm] = useState(false)
   const [showEditForm, setShowEditForm] = useState(false)
