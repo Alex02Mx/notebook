@@ -11,8 +11,21 @@ export function TaskList({showPage,
                         setConfirmDelete
                         }){
 
+  if(!showPage) return null
+  
   const selectedTitle = pagesNoteBook.find( item => item.id === selectedPageId)
   const pageTask = taskList.filter( task => task.pageId === selectedPageId)
+
+  if (pageTask.length === 0){
+    return (
+      <div className="ui-empty">
+        <p>No hay tareas en esta página</p>
+        <p className="ui-empty__hint">
+          Agrega una tarea para comenzar
+        </p>
+      </div>
+    )
+  }
 
   function toggleTaskList(id, complete){
     setTaskList( currentList => currentList.map( item => {
@@ -35,8 +48,6 @@ export function TaskList({showPage,
           <h2 className="ui-title-list">{selectedTitle.pageTitle}</h2>
           <h2 className="priority-title">{`Prioridad :  ${selectedTitle.pagePriority} `}</h2>
         </div>
-
-        {pageTask.length == 0 && <h3 className="ui-title">Sin Tareas</h3>} 
         <ul className="ui-base ui-base--list">
         {pageTask.map( task => {
           return (
@@ -79,7 +90,6 @@ export function TaskList({showPage,
                             id: task.id,
                           })
                         }}
-                        
                         >
                     <img  
                       className="task-btn__icon"
@@ -100,5 +110,4 @@ export function TaskList({showPage,
     )}
   </>
   )
-  
 }

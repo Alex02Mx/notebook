@@ -9,12 +9,25 @@ export function PageList({pagesNoteBook,
                           setShowPageBtns, 
                           setShowTaskBtns
                         }){
+
+    if (!showPageList) return null  
+    
+    if (pagesNoteBook.length === 0) {
+      return (
+        <div className="ui-empty">
+          <p>No hay páginas todavía</p>
+          <p className="ui-empty__hint">
+            Crea una página para empezar
+          </p>
+        </div>
+      )
+    }
+                      
     return (
     <>
      {showPageList && (
       <>
-       {pagesNoteBook.length === 0 && (<h2 className="ui-title">Notebook vacio</h2>)}
-       {pagesNoteBook.length > 0 && (<h2 className="ui-title">Paginas en NoteBook</h2>)}
+       {pagesNoteBook.length > 0 && (<h2 className="ui-title">Selecciona para ver sus tareas</h2>)}
         <ul className="ui-base ui-base--list">
           {pagesNoteBook.map( page => {
             return (
