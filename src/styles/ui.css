@@ -25,7 +25,7 @@
  padding: 0.3rem;
  background: transparent;
 }
-/* Modificadores */
+
 .header-btn__icon{
   width: 2rem;
   height: 2rem;
@@ -35,7 +35,11 @@
 
 
 /* ------- compartidos por TaskList y Header ------- */
-.header-btn {
+.header__pack{
+  display: flex;
+  flex-direction: row;
+}
+.ui-btn-sqr {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -45,32 +49,27 @@
   padding: 6px;
   cursor: pointer;
   transition: background-color 0.15s ease, box-shadow 0.15s ease;
+  width: 2.75rem;   
+  height: 2.75rem;
 }
 .header-btn:hover {
-  background-color: rgba(255, 255, 255, 0.06);
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08);
-}
-.header-btn:active {
-  background: var(--btn-shadow);
-  transform: scale(0.97);
-  /*
-  transform: translateY(1px);
-  box-shadow: 0 0 1px var(--btn-shadow);
-  */
+  background-color: var(--primary-btn-header-hover);
+  box-shadow: 0 0 0 1px var(--primary-btn-header-shadow);
 }
 .header-btn:disabled{
   opacity: 0.4;
   cursor: not-allowed;
+}
+.header-btn:active {
+  background: var(--primary-btn-header-active);
+  transform: scale(0.97);
 }
 .header-btn:focus-visible{
   outline: none;
   background-color: rgba(255, 255, 255, 0.08);
   box-shadow: 0 0 0 2px #3b82f6;
 }
-.header-btn--square{
-  width: 2.75rem;   
-  height: 2.75rem;
-} 
+
 /* ================================================================= */
 
 
@@ -141,15 +140,19 @@
 /* ------- taskList ------- */
 .title-priority{
     display: flex;
-    gap: 1rem;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0rem 2rem;
+    flex-direction: column;
+    padding: 0rem 0rem 1rem 1rem;
     margin: 0;
+}
+.ui-title-list{
+    margin-bottom: 0.5rem;
+    color: var(--header-text); 
 }
 .priority-title{
     font-size: 1rem;
     color: var(--header-text);
+    margin: 0;
+    font-weight: 200;
 }
 .ui-option-container{
   display: flex;
@@ -203,37 +206,31 @@
 .ui-btns-container{
   display: flex;
 }
+
 .task-btn__icon{
   width: 1.7rem;
   height: 1.7rem;
 }
-.task-delete {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background-color: transparent;
-  border: none;
-  border-radius: 8px;
-  padding: 6px;
-  cursor: pointer;
-  transition: background-color 0.15s ease, box-shadow 0.15s ease;
-}
-.task-delete:hover {
+.task-btn:hover {
   background: var(--x-btn-bg-soft);
-  border-color: var(--x-btn-bg-hard);
+ /* border-color: var(--x-btn-bg-hard);*/
 }
-.task-delete:disabled {
+.task-btn:disabled {
   filter: grayscale(70%);
   opacity: 0.4;
   cursor: not-allowed;
 }
-.task-delete:active {
+.task-btn:active {
   background: var(--x-btn-bg-soft);
   transform: scale(0.97);
-/*
-  transform: translateY(1px);
-  box-shadow: 0 0 1px var(--btn-shadow);
-  */
+}
+.task-btn:focus-visible{
+  outline: none;
+  background-color: var(--x-btn-bg-visible);
+  box-shadow: 0 0 0 2px var(--x-btn-bg-hard);
+}
+.danger-btn{
+  border: 1px solid rgba(214, 69, 69, 0.60);
 }
 /* ================================================================= */
 
@@ -463,6 +460,7 @@
   text-align: center;
 }
 .ui-modal__warning{
+  margin: 0;
   color:  var(--modal-warning-text);
   font-weight: 500;
 }

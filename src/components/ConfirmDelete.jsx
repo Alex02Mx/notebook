@@ -6,6 +6,11 @@ export function ConfirmDelete({
   deletePageId,
 }){
 
+  const message = confirmDelete.type === "page"
+        ? "Se eliminará la página con todas sus tareas."
+        : "Se eliminará la tarea."
+    
+
   if(!confirmDelete.open) return null
 
   function handleConfirm() {
@@ -33,10 +38,11 @@ export function ConfirmDelete({
       <div className="ui-base ui-modal-danger">
         <h2 className="ui-title">Confirmar borrado</h2>
 
-        <p className="ui-modal__warning">
-          Esta acción no se puede deshacer.
-        </p>
-
+        <div className="ui-modal__warning">
+          <p >{message}</p>
+          <p>Esta acción no se puede deshacer.</p> 
+        </div>
+        
         <div className="ui-form__actions">
           <button
             className="ui-btn ui-btn--secondary"

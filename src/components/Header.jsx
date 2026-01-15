@@ -26,59 +26,31 @@ export function Header({setShowPageBtns,
         <img src = {logo} alt="Logo"></img>
     </div>
     <div className="header__actions">
-      <div>
-        {showTaskBtns && (
-          <>
-          <button className="header-btn header-btn--square" 
-                  onClick = { () => {
-                    setShowPage(false)
-                    setShowPageList(true)
-                    setShowPageBtns(true)
-                    setShowTaskBtns(false)
-                    setSelectedPageId(null)
-                  }}
-                  >
-              <img  
-                className="header-btn__icon"
-                src={homePage} 
-                alt="Home"
-              />
-          </button>
-          <button className="header-btn header-btn--square" 
-                  onClick = { () => {
-                      setShowNewFormTask(true)
-                  }}
-                  >
-              <img  
-                className="header-btn__icon"
-                src={addTask} 
-                alt="Agregar Tarea"
-              />
-          </button>
-          </>
-        )}
-      </div>
-      <div>
+      <div className="header__pack">
         {showPageBtns && (
           <>
-          <button className="header-btn header-btn--square" 
+          <button className="ui-btn-sqr header-btn" 
                   onClick={ () => { 
                       setShowEditForm(false)
                       setShowNewForm(true)
                       setSelectedPageId(null)
-                  }
-                  }>
+                  }}
+                  title="Agregar pagina"
+                  aria-label="Agregar pagina"
+                  >
               <img 
                 className="header-btn__icon" 
                 src={addPage} 
                 alt="Agregar Pagina"
               />
           </button>
-          <button className="header-btn header-btn--square" 
+          <button className="ui-btn-sqr header-btn" 
                   disabled={selectedPageId === null}
                   onClick = { () => {
                       setShowEditForm(true)
                   }}
+                  title="Editar pagina"
+                  aria-label="Editar pagina"
                   >
               <img  
                 className="header-btn__icon"
@@ -86,7 +58,7 @@ export function Header({setShowPageBtns,
                 alt="Editar Pagina"
               />
           </button>
-          <button className="task-delete header-btn--square" 
+          <button className="ui-btn-sqr task-btn danger-btn" 
                   disabled={selectedPageId === null}
                   onClick = { () => {
                     setConfirmDelete({
@@ -94,11 +66,50 @@ export function Header({setShowPageBtns,
                         type: "page",
                         id: selectedPageId,
                           })
-                  }}>
+                  }}
+                  title="Borrar pagina"
+                  aria-label="Borrar pagina"
+                  >
               <img
                 className ="header-btn__icon"  
                 src= {deletePage} 
                 alt="Borrar Pagina"
+              />
+          </button>
+          </>
+        )}
+      </div>
+      <div className="header__pack">
+        {showTaskBtns && (
+          <>
+          <button className="ui-btn-sqr header-btn" 
+                  onClick = { () => {
+                    setShowPage(false)
+                    setShowPageList(true)
+                    setShowPageBtns(true)
+                    setShowTaskBtns(false)
+                    setSelectedPageId(null)
+                  }}
+                  title="Home"
+                  aria-label="Home"
+                  >
+              <img  
+                className="header-btn__icon"
+                src={homePage} 
+                alt="Home"
+              />
+          </button>
+          <button className="ui-btn-sqr header-btn" 
+                  onClick = { () => {
+                      setShowNewFormTask(true)
+                  }}
+                  title="Agregar tarea"
+                  aria-label="Agregar tarea"
+                  >
+              <img  
+                className="header-btn__icon"
+                src={addTask} 
+                alt="Agregar Tarea"
               />
           </button>
           </>

@@ -10,6 +10,9 @@
     --header-shadow:  rgba(248, 246, 246, 0.08);
   /* butons header */
     --primary-btn-header: #232830;
+    --primary-btn-header-hover: rgba(255, 255, 255, 0.06);
+    --primary-btn-header-shadow: rgba(255, 255, 255, 0.08); 
+    --primary-btn-header-active: rgba(255, 255, 255, 0.10); 
    
   /* =================== Body =================== */
     --color-body-bg: #1e2229;
@@ -37,6 +40,7 @@
     /* list delete btns */
     --x-btn-bg-soft:rgba(214, 69, 69, 0.247);
     --x-btn-bg-hard:rgba(214, 69, 69, 0.85);
+    --x-btn-bg-visible:rgba(255, 255, 255, 0.08);
     --x-btn-shadow: 0 2px 6px rgba(214, 69, 69, 0.45);
     /* modal delete btn */
     --color-danger-btn: #d64545;

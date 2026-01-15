@@ -32,10 +32,9 @@ export function TaskList({showPage,
       <div>
         <>
         <div className="title-priority">
-          <h2 className="ui-title">{selectedTitle.pageTitle}</h2>
+          <h2 className="ui-title-list">{selectedTitle.pageTitle}</h2>
           <h2 className="priority-title">{`Prioridad :  ${selectedTitle.pagePriority} `}</h2>
         </div>
-
 
         {pageTask.length == 0 && <h3 className="ui-title">Sin Tareas</h3>} 
         <ul className="ui-base ui-base--list">
@@ -57,9 +56,8 @@ export function TaskList({showPage,
               </label>
             </div>
 
-
             <div className="ui-btns-container">
-              <button className="header-btn header-btn--square" 
+              <button className="ui-btn-sqr header-btn" 
                         onClick = { () => {
                             setSelectedTaskId(task.id)
                             setShowEditFormTask(true)
@@ -72,7 +70,7 @@ export function TaskList({showPage,
                     />
               </button>
 
-              <button className="header-btn--square task-delete" 
+              <button className="ui-btn-sqr task-btn" 
                         disabled={!task.status}
                         onClick = { () => {
                           setConfirmDelete({
@@ -80,8 +78,8 @@ export function TaskList({showPage,
                             type: "task",
                             id: task.id,
                           })
-
                         }}
+                        
                         >
                     <img  
                       className="task-btn__icon"
@@ -91,13 +89,11 @@ export function TaskList({showPage,
               </button>
             </div>
 
-          
           </li>
           )
         })
         }
         </ul> 
-
 
         </>  
       </div>
