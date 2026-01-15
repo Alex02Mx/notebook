@@ -120,6 +120,7 @@ export default function App() {
           setShowPageBtns={setShowPageBtns}
           setShowTaskBtns={setShowTaskBtns}
           setConfirmDelete={setConfirmDelete}
+          setShowNewForm={setShowNewForm}
     />
     <TaskList showPage={showPage} 
           pagesNoteBook={pagesNoteBook}
@@ -130,6 +131,7 @@ export default function App() {
           setShowEditFormTask={setShowEditFormTask}
           setSelectedTaskId={setSelectedTaskId}
           setConfirmDelete={setConfirmDelete}
+          setShowNewFormTask={setShowNewFormTask}
     />
     {showNewFormTask && (
       <TaskForm 

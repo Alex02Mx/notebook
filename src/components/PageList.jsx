@@ -7,7 +7,8 @@ export function PageList({pagesNoteBook,
                           showPageList, 
                           setShowPageList, 
                           setShowPageBtns, 
-                          setShowTaskBtns
+                          setShowTaskBtns,
+                          setShowNewForm
                         }){
 
     if (!showPageList) return null  
@@ -19,6 +20,12 @@ export function PageList({pagesNoteBook,
           <p className="ui-empty__hint">
             Crea una página para empezar
           </p>
+          <button
+            className="ui-btn ui-btn--ghost"
+            onClick={() => setShowNewForm(true)}
+          >
+            Crear página
+          </button>
         </div>
       )
     }

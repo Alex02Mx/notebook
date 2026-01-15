@@ -8,7 +8,8 @@ export function TaskList({showPage,
                         setTaskList, 
                         setShowEditFormTask,
                         setSelectedTaskId,
-                        setConfirmDelete
+                        setConfirmDelete,
+                        setShowNewFormTask
                         }){
 
   if(!showPage) return null
@@ -23,6 +24,11 @@ export function TaskList({showPage,
         <p className="ui-empty__hint">
           Agrega una tarea para comenzar
         </p>
+        <button className='ui-btn ui-btn--ghost'
+          onClick={ () => setShowNewFormTask(true)}
+        >
+          Agregar tarea
+        </button>
       </div>
     )
   }

@@ -322,6 +322,7 @@
 }
 
 .ui-empty{
+  margin-top: 2rem;
   padding: 1.5rem 1rem;
   text-align: center;
   color: var(--color-text-empty);
@@ -329,8 +330,8 @@
 
 .ui-empty__hint{
   margin-top: 0.25rem;
-  font-size: 0.85rem;
-  opacity: 0.7;
+  font-size: 0.9rem;
+  opacity: 0.8;
 }
 /* ================================================================= */
 
@@ -377,6 +378,20 @@
   padding: 0.5rem 0.5rem;
   color: var(--body-text);
   margin: 0;
+}
+
+.ui-btn--ghost {
+  margin-top: 0.75rem;
+  background: transparent;
+  border: 1px dashed rgba(255,255,255,0.3);
+  color: rgba(255,255,255,0.75);
+}
+
+.ui-btn--ghost:hover {
+  border-style: solid;
+  background: rgba(255,255,255,0.03);
+  border-color: rgba(255,255,255,0.6);
+  color: white;
 }
 /* ================================================================= */
 
