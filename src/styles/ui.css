@@ -52,24 +52,26 @@
   width: 2.75rem;   
   height: 2.75rem;
 }
-.header-btn:hover {
+/* ------- Header Mods ------- */
+.ui-btn-sqr--header:hover {
   background-color: var(--primary-btn-header-hover);
   box-shadow: 0 0 0 1px var(--primary-btn-header-shadow);
 }
-.header-btn:disabled{
-  opacity: 0.4;
-  cursor: not-allowed;
-}
-.header-btn:active {
+.ui-btn-sqr--header:active {
   background: var(--primary-btn-header-active);
   transform: scale(0.97);
 }
-.header-btn:focus-visible{
+.ui-btn-sqr--header:focus-visible{
   outline: none;
-  background-color: rgba(255, 255, 255, 0.08);
   box-shadow: 0 0 0 2px #3b82f6;
 }
-
+.ui-btn-sqr--header:disabled{
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.ui-btn-sqr--danger{
+  border: 1px solid rgba(214, 69, 69, 0.60);
+}
 /* ================================================================= */
 
 
@@ -134,7 +136,6 @@
   font-weight: 500;
 }
 /* =================================================================
-
 
 
 /* ------- taskList ------- */
@@ -211,27 +212,29 @@
   width: 1.7rem;
   height: 1.7rem;
 }
-.task-btn:hover {
+
+/* taskList btn delete mod */
+.ui-btn-sqr--task:hover {
   background: var(--x-btn-bg-soft);
- /* border-color: var(--x-btn-bg-hard);*/
 }
-.task-btn:disabled {
+.ui-btn-sqr--task:disabled {
   filter: grayscale(70%);
   opacity: 0.4;
   cursor: not-allowed;
 }
-.task-btn:active {
-  background: var(--x-btn-bg-soft);
-  transform: scale(0.97);
-}
-.task-btn:focus-visible{
+.ui-btn-sqr--task:focus-visible{
   outline: none;
   background-color: var(--x-btn-bg-visible);
   box-shadow: 0 0 0 2px var(--x-btn-bg-hard);
 }
-.danger-btn{
-  border: 1px solid rgba(214, 69, 69, 0.60);
+.ui-btn-sqr--task:active {
+  background: var(--x-btn-bg-soft);
+  transform: scale(0.97);
 }
+/* ================================================================= */
+
+
+
 /* ================================================================= */
 
 
@@ -503,3 +506,43 @@
 }
 /* ================================================================= */
 
+.ui-toast {
+  position: fixed;
+  bottom: 1.2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1200;
+  border-radius: 8px;
+  padding: 0.6rem 1rem;
+  font-size: 0.9rem;
+  animation: fadeUp 0.5s ease;
+}
+
+.ui-toast--success {
+  background: #1f7a3f;
+  color: white;
+}
+
+.ui-toast--error {
+  background: #b93737;
+  color: white;
+}
+
+.ui-toast--loading {
+  background: #3a3f45;
+  color: white;
+}
+
+.body-no-scroll{
+  overflow: hidden;
+}
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 10px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}

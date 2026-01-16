@@ -9,7 +9,7 @@ export function TaskList({showPage,
                         setShowEditFormTask,
                         setSelectedTaskId,
                         setConfirmDelete,
-                        setShowNewFormTask
+                        setShowNewFormTask,
                         }){
 
   if(!showPage) return null
@@ -74,7 +74,7 @@ export function TaskList({showPage,
             </div>
 
             <div className="ui-btns-container">
-              <button className="ui-btn-sqr header-btn" 
+              <button className="ui-btn-sqr ui-btn-sqr--header" 
                         onClick = { () => {
                             setSelectedTaskId(task.id)
                             setShowEditFormTask(true)
@@ -87,7 +87,7 @@ export function TaskList({showPage,
                     />
               </button>
 
-              <button className="ui-btn-sqr task-btn" 
+              <button className="ui-btn-sqr ui-btn-sqr--task" 
                         disabled={!task.status}
                         onClick = { () => {
                           setConfirmDelete({

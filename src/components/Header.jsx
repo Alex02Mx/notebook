@@ -29,7 +29,7 @@ export function Header({setShowPageBtns,
       <div className="header__pack">
         {showPageBtns && (
           <>
-          <button className="ui-btn-sqr header-btn" 
+          <button className="ui-btn-sqr ui-btn-sqr--header" 
                   onClick={ () => { 
                       setShowEditForm(false)
                       setShowNewForm(true)
@@ -44,7 +44,7 @@ export function Header({setShowPageBtns,
                 alt="Agregar Pagina"
               />
           </button>
-          <button className="ui-btn-sqr header-btn" 
+          <button className="ui-btn-sqr ui-btn-sqr--header" 
                   disabled={selectedPageId === null}
                   onClick = { () => {
                       setShowEditForm(true)
@@ -58,14 +58,14 @@ export function Header({setShowPageBtns,
                 alt="Editar Pagina"
               />
           </button>
-          <button className="ui-btn-sqr task-btn danger-btn" 
+          <button className="ui-btn-sqr ui-btn-sqr--task ui-btn-sqr--danger" 
                   disabled={selectedPageId === null}
                   onClick = { () => {
                     setConfirmDelete({
                         open: true,
                         type: "page",
                         id: selectedPageId,
-                          })
+                    })
                   }}
                   title="Borrar pagina"
                   aria-label="Borrar pagina"
@@ -82,7 +82,7 @@ export function Header({setShowPageBtns,
       <div className="header__pack">
         {showTaskBtns && (
           <>
-          <button className="ui-btn-sqr header-btn" 
+          <button className="ui-btn-sqr ui-btn-sqr--header" 
                   onClick = { () => {
                     setShowPage(false)
                     setShowPageList(true)
@@ -99,7 +99,7 @@ export function Header({setShowPageBtns,
                 alt="Home"
               />
           </button>
-          <button className="ui-btn-sqr header-btn" 
+          <button className="ui-btn-sqr ui-btn-sqr--header" 
                   onClick = { () => {
                       setShowNewFormTask(true)
                   }}

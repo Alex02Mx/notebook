@@ -1,11 +1,12 @@
+import { useEffect } from "react"
 
-export function ConfirmDelete({
-  confirmDelete,
-  setConfirmDelete,
-  deleteTaskId,
-  deletePageId,
+export function ConfirmDelete({confirmDelete,
+                            setConfirmDelete,
+                            deleteTaskId,
+                            deletePageId,
+                            setFeedback
 }){
-
+ 
  if (!confirmDelete.open) return null
 
   const config = {
@@ -23,7 +24,7 @@ export function ConfirmDelete({
 
   const current = config[confirmDelete.type]
 
-    function closeModal(){
+  function closeModal(){
     setConfirmDelete({
         open: false,
         type: null,
@@ -35,13 +36,34 @@ export function ConfirmDelete({
 
     if(confirmDelete.type === "task"){
       deleteTaskId(confirmDelete.id)
+      setFeedback({
+        type: 'success',
+        message: 'Tarea eliminada correctamente',
+      })
 
    } 
     if(confirmDelete.type === "page"){
       deletePageId(confirmDelete.id)
+      setFeedback({
+        type: 'success',
+        message: 'Pagina eliminada correctamente', 
+      })     
    }
+
    closeModal()
+
+    setTimeout(() => {
+      setFeedback({ type: null, message: '' })
+    }, 2000)
   }
+
+  useEffect(() => {
+    document.body.classList.add("body-no-scroll")
+
+    return () => {
+      document.body.classList.remove("body-no-scroll")
+    }
+  }, [])
 
   return (
     <div className="ui-overlay">

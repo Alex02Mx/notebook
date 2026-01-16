@@ -4,6 +4,7 @@ import { PageList } from "./components/PageList"
 import { TaskList } from "./components/TaskList"
 import { TaskForm } from "./components/TaskForm"
 import { ConfirmDelete } from "./components/ConfirmDelete"
+import { FeedbackToast} from "./components/FeedbackToast"
 
 import { useEffect, useState } from 'react'
 
@@ -55,6 +56,12 @@ export default function App() {
     type: null,
     id: null,
   })
+
+  const [feedback, setFeedback] = useState({
+    type: null, // 'success' | 'error' | 'loading'
+    message: '',
+  })
+
 
   function deletePageId(idp) {
     setPagesNoteBook(pages => {
@@ -159,12 +166,18 @@ export default function App() {
           selectedTaskId={selectedTaskId}
       />      
     )}
-    <ConfirmDelete confirmDelete={confirmDelete}
-                   setConfirmDelete={setConfirmDelete} 
-                   deletePageId={deletePageId}
-                   deleteTaskId={deleteTaskId}
-    />
+    {confirmDelete.open && (
+      <ConfirmDelete confirmDelete={confirmDelete}
+                    setConfirmDelete={setConfirmDelete} 
+                    deletePageId={deletePageId}
+                    deleteTaskId={deleteTaskId}
+                    setFeedback={setFeedback}
+      />
+    )}
 
+    <FeedbackToast feedback={feedback}
+    
+    />
    </>
   )
 }  
