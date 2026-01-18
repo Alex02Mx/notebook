@@ -94,6 +94,26 @@ export default function App() {
     },
   }
 
+  const isAnyModalOpen = 
+      confirmDelete.open ||
+      showNewForm ||
+      showEditForm ||
+      showNewFormTask ||
+      showEditFormTask
+
+
+  useEffect(() => {
+    if (isAnyModalOpen){
+      document.body.classList.add("body-no-scroll")
+    }
+    else {
+      document.body.classList.remove("body-no-scroll")
+    }
+    return () => {
+      document.body.classList.remove("body-no-scroll")
+    }
+  }, [isAnyModalOpen])
+  
   function showFeedback (type, message, duration= 2500) {
     setFeedback({type, message})
     setTimeout(() => {

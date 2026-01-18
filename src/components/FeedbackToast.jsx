@@ -3,7 +3,7 @@ export function FeedbackToast({ feedback }) {
 
   return (
     <div className={`ui-toast ui-toast--${feedback.type}`}>
-      {feedback.message}
+      <p>{feedback.message}</p>
     </div>
   )
 }

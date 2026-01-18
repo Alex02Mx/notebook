@@ -36,20 +36,14 @@ export function ConfirmDelete({confirmDelete,
 
     if(confirmDelete.type === "task"){
       deleteTaskId(confirmDelete.id)
-   } 
+    } 
     if(confirmDelete.type === "page"){
       deletePageId(confirmDelete.id)
-   }
-   closeModal()
+    }
+    closeModal()
   }
 
-  useEffect(() => {
-    document.body.classList.add("body-no-scroll")
 
-    return () => {
-      document.body.classList.remove("body-no-scroll")
-    }
-  }, [])
 
   return (
     <div className="ui-overlay">
