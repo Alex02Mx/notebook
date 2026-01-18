@@ -6,7 +6,8 @@ export function TaskForm( {setTaskList,
                            setShowEditFormTask,
                            taskList,
                            taskMode,
-                           selectedTaskId
+                           selectedTaskId,
+                           showFeedback
                           }){
 
     const isEditTaskMode = taskMode === "edit"                         
@@ -41,11 +42,12 @@ export function TaskForm( {setTaskList,
       taskTitle: taskTitle,
       status: false
     }
-    
+    showFeedback('success', 'Tarea creada correctamente')
     setTaskList( list => [ ...list, newTask ])
   }
 
   function updateTask(){
+    showFeedback('success', 'Tarea actualizada')
     setTaskList( list => 
     list.map( task => 
         task.id === selectedTaskId  

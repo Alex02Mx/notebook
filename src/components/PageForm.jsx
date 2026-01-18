@@ -6,66 +6,66 @@ export function PageForm( {mode,
                            selectedPageId, 
                            setSelectedPageId, 
                            setShowNewForm, 
-                           setShowEditForm
+                           setShowEditForm,
+                           showFeedback
                           }){
     
-    const isEditMode = mode === "edit"
-                           
-    const [pageTitle, setPageTitle] = useState("")
-    const [priorityStatus, setPriorityStatus] = useState("") 
+  const isEditMode = mode === "edit"
+                          
+  const [pageTitle, setPageTitle] = useState("")
+  const [priorityStatus, setPriorityStatus] = useState("") 
 
-    const pageToEdit = isEditMode
-        ? pagesNoteBook.find( page => page.id === selectedPageId)
-        : null
+  const pageToEdit = isEditMode
+      ? pagesNoteBook.find( page => page.id === selectedPageId)
+      : null
 
-    useEffect( () => {
-      if(pageToEdit){
-        setPageTitle(pageToEdit.pageTitle)
-        setPriorityStatus(pageToEdit.pagePriority)
-      }
-    },[pageToEdit])
-
-    function handleSubmit(e){
-      e.preventDefault()
-      if( !pageTitle || !priorityStatus) return
-      
-      isEditMode ? updatePage() : createPage()
-
-      resetAndClose()      
+  useEffect( () => {
+    if(pageToEdit){
+      setPageTitle(pageToEdit.pageTitle)
+      setPriorityStatus(pageToEdit.pagePriority)
     }
+  },[pageToEdit])
 
-    function createPage(){
-      const newPage = {
-            id: crypto.randomUUID(),
-            pageTitle: pageTitle,
-            pagePriority: priorityStatus,
-      }
+  function handleSubmit(e){
+    e.preventDefault()
+    if( !pageTitle || !priorityStatus) return
+    
+    isEditMode ? updatePage() : createPage()
 
-      setPagesNoteBook( prev => [...prev, newPage])
-    } 
+    resetAndClose()      
+  }
 
-    function updatePage() {
-        setPagesNoteBook(prev =>
-        prev.map(page =>
-            page.id === selectedPageId
-            ? {
-                ...page,
-                pageTitle: pageTitle,
-                pagePriority: priorityStatus
-                }
-            : page
-        ))
+  function createPage(){
+    const newPage = {
+          id: crypto.randomUUID(),
+          pageTitle: pageTitle,
+          pagePriority: priorityStatus,
     }
+    showFeedback('success', 'Página creada correctamente')
+    setPagesNoteBook( prev => [...prev, newPage])
+  } 
 
-    function resetAndClose(){
-        setPageTitle("")
-        setPriorityStatus("")
-        setSelectedPageId(null)
-        setShowNewForm(false)
-        setShowEditForm(false)
-    }
+  function updatePage() {
+      showFeedback("success", "Página actualizada")
+      setPagesNoteBook(prev =>
+      prev.map(page =>
+          page.id === selectedPageId
+          ? {
+              ...page,
+              pageTitle: pageTitle,
+              pagePriority: priorityStatus
+              }
+          : page
+      ))
+  }
 
-  
+  function resetAndClose(){
+      setPageTitle("")
+      setPriorityStatus("")
+      setSelectedPageId(null)
+      setShowNewForm(false)
+      setShowEditForm(false)
+  }
 
   return (
         <div className="ui-overlay">

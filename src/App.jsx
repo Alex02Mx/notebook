@@ -62,27 +62,87 @@ export default function App() {
     message: '',
   })
 
-
-  function deletePageId(idp) {
-    setPagesNoteBook(pages => {
-      return pages.filter( page => page.id !== idp)
-    })
-    setTaskList(tasks => {
-      return tasks.filter( task => task.pageId !== idp)
-    })
-    setSelectedPageId(null)
+  const sources = {
+    task: {
+      list: taskList,
+    },
+    page: {
+      list: pagesNoteBook,
+    },
   }
 
-  function deleteTaskId(idt) {
-    setTaskList(tasks => {
-      return tasks.filter( task => task.id !== idt)
+  const rules = {
+    task : {
+      delete : {
+        exist : true,
+        message : "La tarea ya no existe",
+      },
+      edit : {
+        exist : true,
+        message : "No se puede editar esta tarea",
+      },
+    },
+    page : {
+      delete : {
+        exist : true,
+        message : "La pagina ya no existe",
+      },
+      edit : {
+        exist : true,
+        message : "No se puede editar esta pagina",
+      },
+    },
+  }
+
+  function showFeedback (type, message, duration= 2500) {
+    setFeedback({type, message})
+    setTimeout(() => {
+      setFeedback({ type: null, message: '' })
+    }, duration)
+  }
+
+  function guardAction({ type, action, id, onSuccess}){
+    const source = sources[type] 
+    const rule = rules[type]?.[action]
+
+    if (!source || !rule) {
+      console.warn("Tipo no soportado", type, action)
+      setFeedback({
+        type: "error",
+        message: "Accion invalida"
     })
+    return
+  }
+
+    if (rule.exist) {
+      const exists = source.list.some( item => item.id === id)
+
+      if (!exists) {
+        setFeedback({
+          type : "error",
+          message : rule.message,
+        })
+        return 
+      }
+    }
+    onSuccess()
+  }
+
+  function deletePageId(idpage) {
+    setPagesNoteBook(pages => pages.filter( page => page.id !== idpage))
+    setTaskList(tasks => tasks.filter( task => task.pageId !== idpage))
+    setSelectedPageId(null)
+    showFeedback('success', 'Página eliminada correctamente')
+  }
+
+  function deleteTaskId(idtask) {
+    setTaskList(tasks => tasks.filter( task => task.id !== idtask))
     setSelectedTaskId(null)
+    showFeedback('success', 'Tarea eliminada correctamente')
   }
 
   return (
    <>
-            
     <Header setShowPageBtns={setShowPageBtns}
             setShowTaskBtns={setShowTaskBtns}
             setShowNewForm={setShowNewForm}
@@ -96,6 +156,7 @@ export default function App() {
             showPageBtns={showPageBtns}
             showTaskBtns={showTaskBtns}
             setConfirmDelete={setConfirmDelete}
+            guardAction={guardAction}
     />
     {showNewForm && (
       <PageForm
@@ -105,6 +166,7 @@ export default function App() {
         setSelectedPageId={setSelectedPageId}
         setShowNewForm={setShowNewForm}
         setShowEditForm={setShowEditForm}
+        showFeedback={showFeedback}
       />
     )}
     {showEditForm && (
@@ -116,6 +178,7 @@ export default function App() {
         setSelectedPageId={setSelectedPageId}
         setShowEditForm={setShowEditForm}
         setShowNewForm={setShowNewForm}
+        showFeedback={showFeedback}
       />
     )}
     <PageList pagesNoteBook={pagesNoteBook}
@@ -137,8 +200,9 @@ export default function App() {
           deleteTaskId={deleteTaskId}
           setShowEditFormTask={setShowEditFormTask}
           setSelectedTaskId={setSelectedTaskId}
-          setConfirmDelete={setConfirmDelete}
           setShowNewFormTask={setShowNewFormTask}
+          setConfirmDelete={setConfirmDelete}
+          guardAction={guardAction}
     />
     {showNewFormTask && (
       <TaskForm 
@@ -151,6 +215,7 @@ export default function App() {
           setShowEditFormTask={setShowEditFormTask}
           taskList={taskList}
           selectedTaskId={selectedTaskId}
+          showFeedback={showFeedback}
       />      
     )}
     {showEditFormTask && (
@@ -164,6 +229,7 @@ export default function App() {
           setShowEditFormTask={setShowEditFormTask}
           taskList={taskList}
           selectedTaskId={selectedTaskId}
+          showFeedback={showFeedback}
       />      
     )}
     {confirmDelete.open && (
@@ -174,9 +240,7 @@ export default function App() {
                     setFeedback={setFeedback}
       />
     )}
-
     <FeedbackToast feedback={feedback}
-    
     />
    </>
   )

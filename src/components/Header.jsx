@@ -17,7 +17,8 @@ export function Header({setShowPageBtns,
                         selectedPageId, 
                         showPageBtns, 
                         showTaskBtns,
-                        setConfirmDelete 
+                        setConfirmDelete,
+                        guardAction,
                       }){
   return (
   <>
@@ -60,13 +61,19 @@ export function Header({setShowPageBtns,
           </button>
           <button className="ui-btn-sqr ui-btn-sqr--task ui-btn-sqr--danger" 
                   disabled={selectedPageId === null}
-                  onClick = { () => {
-                    setConfirmDelete({
-                        open: true,
-                        type: "page",
-                        id: selectedPageId,
-                    })
-                  }}
+                  onClick = { () => 
+                     guardAction({
+                      type : "page",
+                      action : "delete",
+                      id : selectedPageId,
+                      onSuccess : () => 
+                        setConfirmDelete({
+                          open : true,
+                          type : "page",
+                          id : selectedPageId
+                        })
+                     })
+                  }
                   title="Borrar pagina"
                   aria-label="Borrar pagina"
                   >

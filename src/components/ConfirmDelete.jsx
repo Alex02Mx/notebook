@@ -36,25 +36,11 @@ export function ConfirmDelete({confirmDelete,
 
     if(confirmDelete.type === "task"){
       deleteTaskId(confirmDelete.id)
-      setFeedback({
-        type: 'success',
-        message: 'Tarea eliminada correctamente',
-      })
-
    } 
     if(confirmDelete.type === "page"){
       deletePageId(confirmDelete.id)
-      setFeedback({
-        type: 'success',
-        message: 'Pagina eliminada correctamente', 
-      })     
    }
-
    closeModal()
-
-    setTimeout(() => {
-      setFeedback({ type: null, message: '' })
-    }, 2000)
   }
 
   useEffect(() => {

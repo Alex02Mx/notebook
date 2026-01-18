@@ -8,8 +8,9 @@ export function TaskList({showPage,
                         setTaskList, 
                         setShowEditFormTask,
                         setSelectedTaskId,
-                        setConfirmDelete,
                         setShowNewFormTask,
+                        setConfirmDelete,
+                        guardAction,
                         }){
 
   if(!showPage) return null
@@ -44,6 +45,9 @@ export function TaskList({showPage,
       return item
     }))
   }
+
+
+  
 
   return (
   <>
@@ -89,13 +93,19 @@ export function TaskList({showPage,
 
               <button className="ui-btn-sqr ui-btn-sqr--task" 
                         disabled={!task.status}
-                        onClick = { () => {
-                          setConfirmDelete({
-                            open: true,
-                            type: "task",
-                            id: task.id,
+                        onClick = { () => 
+                          guardAction({
+                            type : "task",
+                            action : "delete",
+                            id : task.id,
+                            onSuccess : () =>
+                              setConfirmDelete({
+                                open : true,
+                                type : "task",
+                                id : task.id
+                              })
                           })
-                        }}
+                        }
                         >
                     <img  
                       className="task-btn__icon"
