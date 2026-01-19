@@ -1,0 +1,57 @@
+/*
+Listas seleccionables (TaskList)
+*/
+.ui-option{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.ui-option-list{
+  justify-content: space-between;
+}
+.ui-option-container{
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+.ui-option-container input {
+  appearance: none;
+  min-width: 16px;
+  min-height: 16px;
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  border: 2px solid var(--border-default);
+  background: transparent;
+  cursor: pointer;
+}
+.ui-option-container label{
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+  color: var(--text-main);
+}
+.ui-option-container input:hover {
+  border-color: var(--border-hover);
+}
+.ui-option-container input:checked {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.ui-option-container input:checked+label span{
+  color:  var(--text-muted);
+  text-decoration:line-through;
+  text-decoration-thickness: 2px;
+  text-decoration-color: var(--accent);
+  opacity: 0.85;
+}
+.ui-option-container input:checked:hover{
+  background: var(--accent-soft);
+}
+.ui-option-container input:active{
+  transform: scale(0.95);
+}
+.ui-option-container input:focus-visible{
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}

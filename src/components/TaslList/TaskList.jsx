@@ -1,5 +1,5 @@
-import editTask from '../assets/pencil.png'
-import deleteTask from '../assets/Xdelete2.png'
+import editTask from '../../assets/pencil.png'
+import deleteTask from '../../assets/Xdelete2.png'
 
 export function TaskList({showPage, 
                         pagesNoteBook, 
@@ -54,9 +54,9 @@ export function TaskList({showPage,
     {showPage && (
       <div>
         <>
-        <div className="title-priority">
-          <h2 className="ui-title-list">{selectedTitle.pageTitle}</h2>
-          <h2 className="priority-title">{`Prioridad :  ${selectedTitle.pagePriority} `}</h2>
+        <div className="ui-list__header">
+          <h2 className="ui-list__title">{selectedTitle.pageTitle}</h2>
+          <h2 className="ui-list__meta">{`Prioridad :  ${selectedTitle.pagePriority} `}</h2>
         </div>
         <ul className="ui-base ui-base--list">
         {pageTask.map( task => {
@@ -73,7 +73,7 @@ export function TaskList({showPage,
               />
 
               <label htmlFor={`task-${task.id}`}>
-                <span className="ui-added__title ui-added--tk">{task.taskTitle}</span>
+                <span className="ui-added__title ui-added__title--task">{task.taskTitle}</span>
               </label>
             </div>
 
@@ -85,7 +85,7 @@ export function TaskList({showPage,
                         }}
                         >
                     <img  
-                      className="task-btn__icon"
+                      className="task-btn__icon--sm"
                       src={editTask} 
                       alt="Editar Tarea"
                     />

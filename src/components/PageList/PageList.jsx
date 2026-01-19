@@ -40,7 +40,7 @@ export function PageList({pagesNoteBook,
             return (
               <li key={page.id} className="ui-option ui-option-list">
 
-                <div className="ui-option-r-container">
+                <div className="ui-option__control">
                   <input 
                       id={`page-${page.id}`}
                       type="radio"
@@ -50,8 +50,8 @@ export function PageList({pagesNoteBook,
                   />
 
                   <label htmlFor={`page-${page.id}`}>
-                    <span className="ui-added__title ui-added--pg">{page.pageTitle}</span> 
-                    <p className={`ui-added__priority ${page.pagePriority.toLowerCase()}`}>{page.pagePriority}</p>
+                    <span className="ui-added__title ui-added__title--page">{page.pageTitle}</span> 
+                    <p className={`ui-added__priority--${page.pagePriority.toLowerCase()}`}>{page.pagePriority}</p>
                   </label>
                  
                 </div>

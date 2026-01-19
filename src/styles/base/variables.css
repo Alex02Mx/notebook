@@ -1,3 +1,13 @@
+/*
+Variables:
+colores
+spacing
+radius
+shadows
+font-sizes
+Sin clases.
+*/
+
 * {
   font-family: Arial, Helvetica, sans-serif;
   box-sizing: border-box;
@@ -91,17 +101,5 @@
     --title-text: var(--color-text-soft);
     --body-text: var(--color-text-soft);
 }
-/* ======================================== */
 
-header{
-  height: var(--header-height);
-}
 
-body{
-  background: var(--color-body-bg);
-  color: var(--color-body-text);
-  max-width: 400px;
-  padding: 0;
-  padding-top: var(--header-height);
-  margin: 0 auto;
-}

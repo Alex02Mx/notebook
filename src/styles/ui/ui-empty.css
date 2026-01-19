@@ -1,0 +1,8 @@
+/*
+Estados vacíos (sin tareas)
+*/
+.ui-empty__hint{
+  margin-top: 0.25rem;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}

@@ -1,0 +1,63 @@
+.ui-option__control{
+  display: flex;
+  flex-direction: row;
+  gap: 0.3rem;
+}
+.ui-option__control input {
+  appearance: none;
+  min-width: 16px;
+  min-height: 16px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid var(--border-default);
+  background: transparent;
+  cursor: pointer;
+  margin-top: 0.7rem;
+}
+.ui-option__control input:hover {
+  border-color: var(--border-hover);
+}
+.ui-option__control input:checked {
+  border-color: var(--accent);
+}
+.ui-option__control input:checked::after{
+  content: "";
+  width: 8px;
+  height: 8px;
+  background: var(--accent);
+  border-radius: 50%;
+  display: block;
+  margin: 2px auto;
+}
+.ui-option__control input:focus-visible{
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+.ui-option__control label{
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.ui-list__header{
+    display: flex;
+    flex-direction: column;
+    padding: 0rem 0rem 1rem 1rem;
+    margin: 0;
+}
+.ui-list__title{
+    margin-bottom: 0.5rem;
+    color: var(--header-text); 
+}
+.ui-list__meta{
+    font-size: 1rem;
+    color: var(--header-text);
+    margin: 0;
+    font-weight: 200;
+}
+
+.task-btn__icon--sm{
+  width: 1.7rem;
+  height: 1.7rem;
+}

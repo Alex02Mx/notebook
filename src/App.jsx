@@ -1,15 +1,15 @@
-import { Header } from "./components/Header"
-import { PageForm } from "./components/PageForm"
-import { PageList } from "./components/PageList"
-import { TaskList } from "./components/TaskList"
-import { TaskForm } from "./components/TaskForm"
-import { ConfirmDelete } from "./components/ConfirmDelete"
-import { FeedbackToast} from "./components/FeedbackToast"
+import { Header } from "./components/Header/Header"
+import { PageForm } from "./components/PageForm/PageForm"
+import { PageList } from "./components/PageList/PageList"
+import { TaskList } from "./components/TaslList/TaskList"
+import { TaskForm } from "./components/TaskForm/TaskForm"
+import { ConfirmDelete } from "./components/ConfirmDelete/ConfirmDelete"
+import { FeedbackToast} from "./components/FeedbackToast/FeedbackToast"
 
 import { useEffect, useState } from 'react'
 
-import './styles/variables.css'
-import './styles/ui.css'
+import './styles/index.css'
+
 
 export default function App() {
   

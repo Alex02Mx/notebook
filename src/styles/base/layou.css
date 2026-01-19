@@ -1,0 +1,8 @@
+body{
+  background: var(--color-body-bg);
+  color: var(--color-body-text);
+  max-width: 400px;
+  padding: 0;
+  padding-top: var(--header-height);
+  margin: 0 auto;
+}

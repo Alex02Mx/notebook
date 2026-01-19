@@ -1,0 +1,25 @@
+/*
+Texto añadido / marcado (tareas)
+*/
+.ui-added__title{
+  padding: 0.5rem 0.5rem;
+  color: var(--body-text);
+  margin: 0;
+}
+.ui-added__priority{
+  margin: 0;
+  padding: 0rem 0rem 1rem 2rem;
+  font-size: 0.9rem;
+}
+/* Normal */
+.ui-added__priority--normal {
+  color: var(--color-normal);     
+}
+/* Urgente */
+.ui-added__priority--urgente {
+  color: var(--color-danger);
+  font-weight: 500;
+}
+.ui-added__title--task{
+  font-size: 1rem;
+}

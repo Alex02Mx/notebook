@@ -1,10 +1,10 @@
-import logo from "../assets/logo.png"
-import addPage from '../assets/add-page.png'
-import editPage from '../assets/edit-page.png'
-import deletePage from '../assets/delete-page2.png'
+import logo from "../../assets/logo.png"
+import addPage from '../../assets/add-page.png'
+import editPage from '../../assets/edit-page.png'
+import deletePage from '../../assets/delete-page2.png'
 
-import homePage from '../assets/home.png'
-import addTask from '../assets/add-task.png'
+import homePage from '../../assets/home.png'
+import addTask from '../../assets/add-task.png'
 
 export function Header({setShowPageBtns,
                         setShowTaskBtns,

@@ -1,0 +1,14 @@
+/*
+Títulos reutilizables (forms / lists)
+*/
+
+.ui-title{
+  text-align: center;
+  color: var(--header-text);  
+}
+.ui-empty{
+  margin-top: 2rem;
+  padding: 1.5rem 1rem;
+  text-align: center;
+  color: var(--color-text-empty);
+}

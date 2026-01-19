@@ -1,0 +1,16 @@
+/*
+ConfirmDelete
+*/
+
+.ui-modal-danger {
+  background: var(--modal-danger-bg);
+  border-radius: 14px;
+  box-shadow: var(--modal-shadow);
+  border: none;
+  text-align: center;
+}
+.ui-modal__warning{
+  margin: 0;
+  color:  var(--modal-warning-text);
+  font-weight: 500;
+}

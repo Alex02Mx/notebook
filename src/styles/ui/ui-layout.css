@@ -1,0 +1,7 @@
+/*
+Agrupación de botones (TaskList)
+*/
+
+.ui-btns-container{
+  display: flex;
+}

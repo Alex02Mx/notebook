@@ -1,0 +1,33 @@
+/*
+Contenedores genéricos (cards, forms, lists)
+*/
+
+.ui-base {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  gap: 1rem;
+  max-width: 350px;
+  width: 100%;
+  margin: 0 auto;
+  list-style: none;
+}
+.ui-base--form {
+  padding: 1rem 1.5rem;
+  border-radius: 14px;
+  border: none;
+  background: var(--form-base-bg);
+  box-shadow: var(--form-shadow);
+}
+.ui-base--list {
+  background:  var(--list-base-bg);
+  padding: 0rem 0.5rem;
+  border-radius: 12px;
+}
+.ui-list {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+}
+
