@@ -1,15 +1,18 @@
 
+import { useAppUI } from "../../context/AppUIContext"
 
-export function PageList({pagesNoteBook, 
-                          selectedPageId, 
-                          setSelectedPageId, 
-                          setShowPage, 
-                          showPageList, 
-                          setShowPageList, 
-                          setShowPageBtns, 
-                          setShowTaskBtns,
-                          setShowNewForm
-                        }){
+export function PageList( {pagesNoteBook} ){
+    
+  const {
+          setShowPage,
+          showPageList, 
+          setShowPageList, 
+          setShowPageBtns, 
+          setShowTaskBtns,
+          setShowNewForm,
+          selectedPageId, 
+          setSelectedPageId, 
+        } = useAppUI()
 
     if (!showPageList) return null  
     
@@ -51,7 +54,7 @@ export function PageList({pagesNoteBook,
 
                   <label htmlFor={`page-${page.id}`}>
                     <span className="ui-added__title ui-added__title--page">{page.pageTitle}</span> 
-                    <p className={`ui-added__priority--${page.pagePriority.toLowerCase()}`}>{page.pagePriority}</p>
+                    <p className={`ui-added__priority ui-added__priority--${page.pagePriority.toLowerCase()}`}>{page.pagePriority}</p>
                   </label>
                  
                 </div>

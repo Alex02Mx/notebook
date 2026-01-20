@@ -1,17 +1,23 @@
 import editTask from '../../assets/pencil.png'
 import deleteTask from '../../assets/Xdelete2.png'
 
-export function TaskList({showPage, 
-                        pagesNoteBook, 
-                        selectedPageId,
-                        taskList, 
-                        setTaskList, 
-                        setShowEditFormTask,
-                        setSelectedTaskId,
-                        setShowNewFormTask,
-                        setConfirmDelete,
-                        guardAction,
+import { useAppUI } from "../../context/AppUIContext"
+
+export function TaskList({
+                          pagesNoteBook, 
+                          taskList, 
+                          setTaskList, 
+                          guardAction,
                         }){
+
+  const { 
+      showPage, 
+      setShowEditFormTask,
+      setSelectedTaskId,
+      setShowNewFormTask,
+      setConfirmDelete,
+      selectedPageId,
+      } = useAppUI()
 
   if(!showPage) return null
   
@@ -85,7 +91,7 @@ export function TaskList({showPage,
                         }}
                         >
                     <img  
-                      className="task-btn__icon--sm"
+                      className="ui-btn__icon--sm"
                       src={editTask} 
                       alt="Editar Tarea"
                     />
@@ -108,7 +114,7 @@ export function TaskList({showPage,
                         }
                         >
                     <img  
-                      className="task-btn__icon"
+                      className="ui-btn__icon--sm"
                       src={deleteTask} 
                       alt="Borrar Tarea"
                     />

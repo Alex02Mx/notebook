@@ -6,20 +6,25 @@ import deletePage from '../../assets/delete-page2.png'
 import homePage from '../../assets/home.png'
 import addTask from '../../assets/add-task.png'
 
-export function Header({setShowPageBtns,
-                        setShowTaskBtns,
-                        setShowNewForm,
-                        setShowEditForm, 
-                        setShowNewFormTask,
-                        setShowPageList, 
-                        setSelectedPageId,
-                        setShowPage,
-                        selectedPageId, 
-                        showPageBtns, 
-                        showTaskBtns,
-                        setConfirmDelete,
-                        guardAction,
-                      }){
+import { useAppUI } from "../../context/AppUIContext"
+
+export function Header( {guardAction} ){
+
+const { 
+        setShowPageBtns, 
+        setShowTaskBtns, 
+        showPageBtns,
+        showTaskBtns,
+        setShowNewForm, 
+        setShowEditForm, 
+        setShowNewFormTask, 
+        setShowPageList, 
+        setShowPage, 
+        setConfirmDelete, 
+        setSelectedPageId,
+        selectedPageId, 
+      } = useAppUI()
+
   return (
   <>
   <div className="header">
@@ -40,7 +45,7 @@ export function Header({setShowPageBtns,
                   aria-label="Agregar pagina"
                   >
               <img 
-                className="header-btn__icon" 
+                className="ui-btn__icon" 
                 src={addPage} 
                 alt="Agregar Pagina"
               />
@@ -54,7 +59,7 @@ export function Header({setShowPageBtns,
                   aria-label="Editar pagina"
                   >
               <img  
-                className="header-btn__icon"
+                className="ui-btn__icon"
                 src={editPage} 
                 alt="Editar Pagina"
               />
@@ -78,7 +83,7 @@ export function Header({setShowPageBtns,
                   aria-label="Borrar pagina"
                   >
               <img
-                className ="header-btn__icon"  
+                className ="ui-btn__icon"  
                 src= {deletePage} 
                 alt="Borrar Pagina"
               />
@@ -101,7 +106,7 @@ export function Header({setShowPageBtns,
                   aria-label="Home"
                   >
               <img  
-                className="header-btn__icon"
+                className="ui-btn__icon"
                 src={homePage} 
                 alt="Home"
               />
@@ -114,7 +119,7 @@ export function Header({setShowPageBtns,
                   aria-label="Agregar tarea"
                   >
               <img  
-                className="header-btn__icon"
+                className="ui-btn__icon"
                 src={addTask} 
                 alt="Agregar Tarea"
               />

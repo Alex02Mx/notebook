@@ -1,14 +1,19 @@
 import { useEffect, useState } from 'react'
 
-export function TaskForm( {setTaskList, 
-                           selectedPageId,
-                           setShowNewFormTask,
-                           setShowEditFormTask,
-                           taskList,
+import { useAppUI } from "../../context/AppUIContext"
+
+export function TaskForm({
                            taskMode,
-                           selectedTaskId,
-                           showFeedback
+                           taskList,
+                           setTaskList,
                           }){
+  const { 
+          setShowEditFormTask,
+          setShowNewFormTask,
+          showFeedback,
+          selectedPageId,
+          selectedTaskId,
+        } = useAppUI()
 
     const isEditTaskMode = taskMode === "edit"                         
 

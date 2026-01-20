@@ -1,3 +1,4 @@
+/* ===== Components ===== */
 import { Header } from "./components/Header/Header"
 import { PageForm } from "./components/PageForm/PageForm"
 import { PageList } from "./components/PageList/PageList"
@@ -5,20 +6,32 @@ import { TaskList } from "./components/TaslList/TaskList"
 import { TaskForm } from "./components/TaskForm/TaskForm"
 import { ConfirmDelete } from "./components/ConfirmDelete/ConfirmDelete"
 import { FeedbackToast} from "./components/FeedbackToast/FeedbackToast"
-
+/* ===== Hooks ===== */
 import { useEffect, useState } from 'react'
-
+/* ===== Styles ===== */
 import './styles/index.css'
-
+/* ===== Context ===== */
+import { useAppUI } from "./context/AppUIContext"
 
 export default function App() {
+
+    const {
+    showNewForm,
+    showEditForm,
+    showNewFormTask,
+    showEditFormTask,
+    confirmDelete,
+    showFeedback,
+    setSelectedPageId,
+    setSelectedTaskId,
+  } = useAppUI()
+
   
   const [pagesNoteBook, setPagesNoteBook] = useState(() => getLocalStorage("PAGES", []) )
   useEffect(() => {
     localStorage.setItem("PAGES", JSON.stringify(pagesNoteBook))
   },[pagesNoteBook])
   
-
   const [taskList, setTaskList] = useState(() => getLocalStorage("TASKS", [] ) )
   useEffect( () => {
     localStorage.setItem("TASKS", JSON.stringify(taskList))
@@ -33,34 +46,6 @@ export default function App() {
       return defaulValue
     }
   }
-
-  const [showNewForm, setShowNewForm] = useState(false)
-  const [showEditForm, setShowEditForm] = useState(false)
-
-  const [showNewFormTask,setShowNewFormTask] = useState(false)
-  const [showEditFormTask,setShowEditFormTask] = useState(false)
-
-  const [showPageList, setShowPageList] = useState(true)
-  const [showPage, setShowPage] = useState(false)
-
-  const [showTaskForm, setShowTaskForm] = useState(false)
-
-  const [showPageBtns, setShowPageBtns] = useState(true)
-  const [showTaskBtns, setShowTaskBtns] = useState(false)
-
-  const [selectedPageId, setSelectedPageId] = useState(null)
-  const [selectedTaskId, setSelectedTaskId] = useState(null)
-
-  const [confirmDelete, setConfirmDelete] = useState({
-    open: false,
-    type: null,
-    id: null,
-  })
-
-  const [feedback, setFeedback] = useState({
-    type: null, // 'success' | 'error' | 'loading'
-    message: '',
-  })
 
   const sources = {
     task: {
@@ -92,33 +77,6 @@ export default function App() {
         message : "No se puede editar esta pagina",
       },
     },
-  }
-
-  const isAnyModalOpen = 
-      confirmDelete.open ||
-      showNewForm ||
-      showEditForm ||
-      showNewFormTask ||
-      showEditFormTask
-
-
-  useEffect(() => {
-    if (isAnyModalOpen){
-      document.body.classList.add("body-no-scroll")
-    }
-    else {
-      document.body.classList.remove("body-no-scroll")
-    }
-    return () => {
-      document.body.classList.remove("body-no-scroll")
-    }
-  }, [isAnyModalOpen])
-  
-  function showFeedback (type, message, duration= 2500) {
-    setFeedback({type, message})
-    setTimeout(() => {
-      setFeedback({ type: null, message: '' })
-    }, duration)
   }
 
   function guardAction({ type, action, id, onSuccess}){
@@ -163,105 +121,53 @@ export default function App() {
 
   return (
    <>
-    <Header setShowPageBtns={setShowPageBtns}
-            setShowTaskBtns={setShowTaskBtns}
-            setShowNewForm={setShowNewForm}
-            setShowEditForm={setShowEditForm}
-            setShowNewFormTask={setShowNewFormTask}
-            setShowPageList={setShowPageList}
-            setSelectedPageId={setSelectedPageId}
-            setShowPage={setShowPage}
-            selectedPageId={selectedPageId} 
-            deletePageId={deletePageId}
-            showPageBtns={showPageBtns}
-            showTaskBtns={showTaskBtns}
-            setConfirmDelete={setConfirmDelete}
-            guardAction={guardAction}
+    <Header 
+        guardAction={guardAction}
     />
     {showNewForm && (
       <PageForm
-        mode="create"
-        pagesNoteBook={pagesNoteBook}
-        setPagesNoteBook={setPagesNoteBook}
-        setSelectedPageId={setSelectedPageId}
-        setShowNewForm={setShowNewForm}
-        setShowEditForm={setShowEditForm}
-        showFeedback={showFeedback}
+          mode="create"
+          pagesNoteBook={pagesNoteBook}
+          setPagesNoteBook={setPagesNoteBook}
       />
     )}
     {showEditForm && (
       <PageForm
-        mode="edit"
-        pagesNoteBook={pagesNoteBook}
-        setPagesNoteBook={setPagesNoteBook}
-        selectedPageId={selectedPageId}
-        setSelectedPageId={setSelectedPageId}
-        setShowEditForm={setShowEditForm}
-        setShowNewForm={setShowNewForm}
-        showFeedback={showFeedback}
+          mode="edit"
+          pagesNoteBook={pagesNoteBook}
+          setPagesNoteBook={setPagesNoteBook}
       />
     )}
-    <PageList pagesNoteBook={pagesNoteBook}
-          selectedPageId={selectedPageId}
-          setSelectedPageId={setSelectedPageId}
-          setShowPage={setShowPage} 
-          showPageList={showPageList}
-          setShowPageList={setShowPageList} 
-          setShowPageBtns={setShowPageBtns}
-          setShowTaskBtns={setShowTaskBtns}
-          setConfirmDelete={setConfirmDelete}
-          setShowNewForm={setShowNewForm}
+    <PageList 
+        pagesNoteBook={pagesNoteBook}
     />
-    <TaskList showPage={showPage} 
-          pagesNoteBook={pagesNoteBook}
-          selectedPageId={selectedPageId}
-          taskList={taskList}
-          setTaskList={setTaskList}
-          deleteTaskId={deleteTaskId}
-          setShowEditFormTask={setShowEditFormTask}
-          setSelectedTaskId={setSelectedTaskId}
-          setShowNewFormTask={setShowNewFormTask}
-          setConfirmDelete={setConfirmDelete}
-          guardAction={guardAction}
+    <TaskList 
+        pagesNoteBook={pagesNoteBook}
+        taskList={taskList}
+        setTaskList={setTaskList}
+        guardAction={guardAction}
     />
     {showNewFormTask && (
       <TaskForm 
           taskMode = "create"
-          setTaskList={setTaskList}
-          showTaskForm={showTaskForm}
-          setShowTaskForm={setShowTaskForm}
-          selectedPageId={selectedPageId}
-          setShowNewFormTask={setShowNewFormTask}
-          setShowEditFormTask={setShowEditFormTask}
           taskList={taskList}
-          selectedTaskId={selectedTaskId}
-          showFeedback={showFeedback}
+          setTaskList={setTaskList}
       />      
     )}
     {showEditFormTask && (
       <TaskForm 
           taskMode = "edit"
-          setTaskList={setTaskList}
-          showTaskForm={showTaskForm}
-          setShowTaskForm={setShowTaskForm}
-          selectedPageId={selectedPageId}
-          setShowNewFormTask={setShowNewFormTask}
-          setShowEditFormTask={setShowEditFormTask}
           taskList={taskList}
-          selectedTaskId={selectedTaskId}
-          showFeedback={showFeedback}
+          setTaskList={setTaskList}
       />      
     )}
     {confirmDelete.open && (
-      <ConfirmDelete confirmDelete={confirmDelete}
-                    setConfirmDelete={setConfirmDelete} 
-                    deletePageId={deletePageId}
-                    deleteTaskId={deleteTaskId}
-                    setFeedback={setFeedback}
+      <ConfirmDelete
+          deletePageId={deletePageId}
+          deleteTaskId={deleteTaskId}
       />
     )}
-    <FeedbackToast feedback={feedback}
-    />
+    <FeedbackToast />
    </>
   )
 }  

@@ -1,14 +1,20 @@
 import { useEffect, useState } from 'react'
 
-export function PageForm( {mode, 
-                           pagesNoteBook, 
-                           setPagesNoteBook, 
-                           selectedPageId, 
-                           setSelectedPageId, 
-                           setShowNewForm, 
-                           setShowEditForm,
-                           showFeedback
+import { useAppUI } from "../../context/AppUIContext"
+
+export function PageForm({
+                            mode, 
+                            pagesNoteBook, 
+                            setPagesNoteBook, 
                           }){
+
+  const {
+          setShowNewForm, 
+          setShowEditForm, 
+          showFeedback,
+          selectedPageId, 
+          setSelectedPageId, 
+        } = useAppUI()
     
   const isEditMode = mode === "edit"
                           

@@ -1,11 +1,11 @@
-import { useEffect } from "react"
+import { useAppUI } from "../../context/AppUIContext"
 
-export function ConfirmDelete({confirmDelete,
-                            setConfirmDelete,
-                            deleteTaskId,
-                            deletePageId,
-                            setFeedback
-}){
+export function ConfirmDelete({
+                                deleteTaskId,
+                                deletePageId,
+                              }){
+
+ const { confirmDelete, setConfirmDelete } = useAppUI() 
  
  if (!confirmDelete.open) return null
 

@@ -141,3 +141,11 @@ Todos los botones del sistema
 .ui-btn--danger:hover {
   background: var(--color-danger-btn-hover);
 }
+.ui-btn__icon{
+  width: 2rem;
+  height: 2rem;
+}
+.ui-btn__icon--sm{
+  width: 1.7rem;
+  height: 1.7rem;
+}
