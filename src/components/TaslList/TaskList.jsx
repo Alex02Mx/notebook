@@ -7,7 +7,7 @@ export function TaskList({
                           pagesNoteBook, 
                           taskList, 
                           setTaskList, 
-                          guardAction,
+                          handleGuardAction,
                         }){
 
   const { 
@@ -52,9 +52,6 @@ export function TaskList({
     }))
   }
 
-
-  
-
   return (
   <>
     {showPage && (
@@ -62,7 +59,11 @@ export function TaskList({
         <>
         <div className="ui-list__header">
           <h2 className="ui-list__title">{selectedTitle.pageTitle}</h2>
-          <h2 className="ui-list__meta">{`Prioridad :  ${selectedTitle.pagePriority} `}</h2>
+          <h2 className="ui-list__meta">Prioridad : 
+              <p className= {`ui-added__priority--${selectedTitle.pagePriority.toLowerCase()}`} >
+                {selectedTitle.pagePriority}
+              </p> 
+          </h2>
         </div>
         <ul className="ui-base ui-base--list">
         {pageTask.map( task => {
@@ -100,7 +101,7 @@ export function TaskList({
               <button className="ui-btn-sqr ui-btn-sqr--task" 
                         disabled={!task.status}
                         onClick = { () => 
-                          guardAction({
+                          handleGuardAction({
                             type : "task",
                             action : "delete",
                             id : task.id,

@@ -8,7 +8,7 @@ import addTask from '../../assets/add-task.png'
 
 import { useAppUI } from "../../context/AppUIContext"
 
-export function Header( {guardAction} ){
+export function Header( {handleGuardAction} ){
 
 const { 
         setShowPageBtns, 
@@ -67,7 +67,7 @@ const {
           <button className="ui-btn-sqr ui-btn-sqr--task ui-btn-sqr--danger" 
                   disabled={selectedPageId === null}
                   onClick = { () => 
-                     guardAction({
+                    handleGuardAction({
                       type : "page",
                       action : "delete",
                       id : selectedPageId,

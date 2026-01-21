@@ -1,3 +1,6 @@
+import {guardAction} from "./logic/guardAction"
+import { usePages } from "./hooks/usePages"
+import { useTasks } from "./hooks/useTasks"
 /* ===== Components ===== */
 import { Header } from "./components/Header/Header"
 import { PageForm } from "./components/PageForm/PageForm"
@@ -16,45 +19,32 @@ import { useAppUI } from "./context/AppUIContext"
 export default function App() {
 
     const {
-    showNewForm,
-    showEditForm,
-    showNewFormTask,
-    showEditFormTask,
-    confirmDelete,
-    showFeedback,
-    setSelectedPageId,
-    setSelectedTaskId,
+      showFeedback,
+      setSelectedPageId,
+      setSelectedTaskId,
+      showNewForm,
+      showEditForm,
+      showNewFormTask,
+      showEditFormTask,
+      confirmDelete,
+      setFeedback
+      /*
+      selectedPageId,
+      selectedTaskId,
+      */
   } = useAppUI()
 
-  
-  const [pagesNoteBook, setPagesNoteBook] = useState(() => getLocalStorage("PAGES", []) )
-  useEffect(() => {
-    localStorage.setItem("PAGES", JSON.stringify(pagesNoteBook))
-  },[pagesNoteBook])
-  
-  const [taskList, setTaskList] = useState(() => getLocalStorage("TASKS", [] ) )
-  useEffect( () => {
-    localStorage.setItem("TASKS", JSON.stringify(taskList))
-  },[taskList])
+  const {
+    pagesNoteBook,
+    setPagesNoteBook,
+    removePage,
+  } = usePages(showFeedback)
 
-  function getLocalStorage(key, defaulValue ){
-    try{
-      const item = localStorage.getItem(key)
-      return  item ? JSON.parse(item) : defaulValue
-    }
-    catch{
-      return defaulValue
-    }
-  }
-
-  const sources = {
-    task: {
-      list: taskList,
-    },
-    page: {
-      list: pagesNoteBook,
-    },
-  }
+  const {
+    taskList,
+    setTaskList,
+    removeTask,
+  } = useTasks(showFeedback)
 
   const rules = {
     task : {
@@ -79,50 +69,46 @@ export default function App() {
     },
   }
 
-  function guardAction({ type, action, id, onSuccess}){
-    const source = sources[type] 
-    const rule = rules[type]?.[action]
+  const sources = {
+    task: {
+      list: taskList,
+    },
+    page: {
+      list: pagesNoteBook,
+    },
+  }
 
-    if (!source || !rule) {
-      console.warn("Tipo no soportado", type, action)
-      setFeedback({
-        type: "error",
-        message: "Accion invalida"
+  function handleGuardAction({ type, action, id, onSuccess }) {
+    guardAction({
+      type,
+      action,
+      id,
+      onSuccess,
+      sources,
+      rules,
+      setFeedback,
     })
-    return
   }
 
-    if (rule.exist) {
-      const exists = source.list.some( item => item.id === id)
-
-      if (!exists) {
-        setFeedback({
-          type : "error",
-          message : rule.message,
-        })
-        return 
-      }
-    }
-    onSuccess()
+  function deletePageId(id) {
+    removePage({
+      pageId: id,
+      setTaskList,
+      setSelectedPageId,
+    })
   }
 
-  function deletePageId(idpage) {
-    setPagesNoteBook(pages => pages.filter( page => page.id !== idpage))
-    setTaskList(tasks => tasks.filter( task => task.pageId !== idpage))
-    setSelectedPageId(null)
-    showFeedback('success', 'Página eliminada correctamente')
-  }
-
-  function deleteTaskId(idtask) {
-    setTaskList(tasks => tasks.filter( task => task.id !== idtask))
-    setSelectedTaskId(null)
-    showFeedback('success', 'Tarea eliminada correctamente')
+  function deleteTaskId(id) {
+    removeTask({
+      taskId: id,
+      setSelectedTaskId,
+    })
   }
 
   return (
    <>
     <Header 
-        guardAction={guardAction}
+        handleGuardAction={handleGuardAction}
     />
     {showNewForm && (
       <PageForm
@@ -145,7 +131,7 @@ export default function App() {
         pagesNoteBook={pagesNoteBook}
         taskList={taskList}
         setTaskList={setTaskList}
-        guardAction={guardAction}
+        handleGuardAction={handleGuardAction}
     />
     {showNewFormTask && (
       <TaskForm 
