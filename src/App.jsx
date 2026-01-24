@@ -9,8 +9,6 @@ import { TaskList } from "./components/TaslList/TaskList"
 import { TaskForm } from "./components/TaskForm/TaskForm"
 import { ConfirmDelete } from "./components/ConfirmDelete/ConfirmDelete"
 import { FeedbackToast} from "./components/FeedbackToast/FeedbackToast"
-/* ===== Hooks ===== */
-import { useEffect, useState } from 'react'
 /* ===== Styles ===== */
 import './styles/index.css'
 /* ===== Context ===== */
@@ -18,7 +16,7 @@ import { useAppUI } from "./context/AppUIContext"
 
 export default function App() {
 
-    const {
+  const {
       showFeedback,
       setSelectedPageId,
       setSelectedTaskId,
@@ -27,11 +25,6 @@ export default function App() {
       showNewFormTask,
       showEditFormTask,
       confirmDelete,
-      setFeedback
-      /*
-      selectedPageId,
-      selectedTaskId,
-      */
   } = useAppUI()
 
   const {
@@ -47,6 +40,34 @@ export default function App() {
   } = useTasks(showFeedback)
 
   const rules = {
+    task : {
+      delete : [
+        {
+          check : ({source, id}) => source.list.some(task => task.id === id),
+          message: "La tarea ya no existe",
+        },
+        {
+          check : ({source, id}) => source.list.find(task => task.id === id)?.status === true,
+          message : "Solo se pueden borrar tareas completadas"
+        },
+      ],
+      edit : [
+        {
+          check : ({source, id}) => source.list.some(task => task.id === id),
+          message : "No se puede editar esta tarea",
+        },
+      ],
+    },
+    page : {
+      delete : [
+        {
+          check : ({source, id}) => source.list.some(page => page.id === id),
+          message : "La página ya no existe"
+        },
+      ],
+    },
+  }
+  const rules2 = {
     task : {
       delete : {
         exist : true,
@@ -78,16 +99,19 @@ export default function App() {
     },
   }
 
-  function handleGuardAction({ type, action, id, onSuccess }) {
-    guardAction({
+  function handleGuardAction({ type, action, id, onAllowed }) {
+    const result = guardAction({
       type,
       action,
       id,
-      onSuccess,
       sources,
       rules,
-      setFeedback,
     })
+    if (!result.allowed){
+      showFeedback("error", result.reason)
+      return 
+    }
+    onAllowed()
   }
 
   function deletePageId(id) {

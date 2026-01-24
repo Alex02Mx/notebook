@@ -105,7 +105,7 @@ export function TaskList({
                             type : "task",
                             action : "delete",
                             id : task.id,
-                            onSuccess : () =>
+                            onAllowed : () =>
                               setConfirmDelete({
                                 open : true,
                                 type : "task",

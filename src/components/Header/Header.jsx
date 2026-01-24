@@ -71,7 +71,7 @@ const {
                       type : "page",
                       action : "delete",
                       id : selectedPageId,
-                      onSuccess : () => 
+                      onAllowed : () => 
                         setConfirmDelete({
                           open : true,
                           type : "page",
