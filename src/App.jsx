@@ -65,28 +65,12 @@ export default function App() {
           message : "La página ya no existe"
         },
       ],
-    },
-  }
-  const rules2 = {
-    task : {
-      delete : {
-        exist : true,
-        message : "La tarea ya no existe",
-      },
-      edit : {
-        exist : true,
-        message : "No se puede editar esta tarea",
-      },
-    },
-    page : {
-      delete : {
-        exist : true,
-        message : "La pagina ya no existe",
-      },
-      edit : {
-        exist : true,
-        message : "No se puede editar esta pagina",
-      },
+      edit : [
+        {
+          check : ({source, id}) => source.list.some(task => task.id === id),
+          message : "No se puede editar esta pagina",
+        },
+      ],
     },
   }
 
@@ -134,6 +118,9 @@ export default function App() {
     <Header 
         handleGuardAction={handleGuardAction}
     />
+    <PageList 
+        pagesNoteBook={pagesNoteBook}
+    />
     {showNewForm && (
       <PageForm
           mode="create"
@@ -148,9 +135,6 @@ export default function App() {
           setPagesNoteBook={setPagesNoteBook}
       />
     )}
-    <PageList 
-        pagesNoteBook={pagesNoteBook}
-    />
     <TaskList 
         pagesNoteBook={pagesNoteBook}
         taskList={taskList}

@@ -5,7 +5,7 @@ export function useTasks(showFeedback){
     const [taskList, setTaskList] = useState (() => {
         try {
             const item = localStorage.getItem("TASKS")
-            return item ? JASON.parse(item) : []
+            return item ? JSON.parse(item) : []
         }
         catch{
             return []
